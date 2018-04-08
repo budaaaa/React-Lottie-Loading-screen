@@ -4,7 +4,7 @@ import AppLoaderHOC from './AppLoaderHOC';
 import { StyleSheet, Animated, ScrollView, View } from 'react-native';
 import {Header, SearchBar} from 'react-native-elements';
 
-import {mainColor, lightestColor, shadowColor} from '../assets/colors';
+import {mainColor, lightestColor, shadowColor, background} from '../assets/colors';
 import HorizontalScroll from '../elements/HorizontalScroll';
 import Title from '../elements/Title';
 
@@ -45,30 +45,26 @@ class MainView extends React.Component {
           opacity: this.state.opacity
         }}
         >
-
           <Header
             placement="top"
             backgroundColor="#fff"
             outerContainerStyles={styles.navbar}
             leftComponent={{ icon: 'menu', color: '#3e3b46' }}
             centerComponent={navbarTitle}
-            />
-
-
-            <ScrollView>
-              <SearchBar
-                inputStyle={styles.searchBarInputStyle}
-                containerStyle={styles.searchBarContainer}
-                placeholder='Search for a restaurant or cousine'
-                />
-              <Title title="Your Go-Tos" />
-              <HorizontalScroll data={this.props.meals}/>
-              <View style={styles.separator} />
-              <Title title="Open Restaurants" />
-              <HorizontalScroll data={this.props.categories}/>
-              <View style={styles.separator} />
-            </ScrollView>
-
+          />
+          <ScrollView>
+            <SearchBar
+              inputStyle={styles.searchBarInputStyle}
+              containerStyle={styles.searchBarContainer}
+              placeholder='Search for a restaurant or cousine'
+              />
+            <Title title="Your Go-Tos" />
+            <HorizontalScroll data={this.props.meals}/>
+            <View style={styles.separator} />
+            <Title title="Open Restaurants" />
+            <HorizontalScroll data={this.props.categories}/>
+            <View style={styles.separator} />
+          </ScrollView>
       </Animated.View>
     )
   }
@@ -88,6 +84,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 5,
   },
+  contentContainer: {
+      backgroundColor: background
+  },
   separator: {
     margin:10
   },
@@ -99,16 +98,16 @@ const styles = StyleSheet.create({
     zIndex: -1
   },
   searchBarInputStyle: {
+    fontSize: 14,
+    textAlign: "center",
     backgroundColor: "#fff",
   }
 });
 
 const navbarTitle = {
-  text: "Some City",
-
   style: {
     color: mainColor,
-    fontSize: 18,
+    textAlign: "center",
     fontWeight: 'bold'
   }
 }
